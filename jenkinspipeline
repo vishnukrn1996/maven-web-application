@@ -1,0 +1,19 @@
+node {
+    def maven = tool name:'maven3.8.6'
+    stage('checkout'){
+    git branch: 'development', credentialsId: 'dd130e80-2481-4bb9-a12e-18d7edf464d8', url: 'https://github.com/vishnukrn1996/maven-web-application.git'
+    }
+    stage('build'){
+        sh "${maven}/bin/mvn package"
+    }
+        stage('sonarreport'){
+            sh "${maven}/bin/mvn sonar:sonar"
+        }
+            stage('artifact'){
+                sh "${maven}/bin/mvn deploy"
+            }
+            stage('depoly tomcat'){
+            sshagent(['a8009aed-6127-4a69-bbde-17c35fdcbedd']) {
+            sh "scp -o  StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.2.137.203:/opt/apache-tomcat-9.0.67/webapps"
+        }    }
+}
