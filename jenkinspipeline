@@ -2,7 +2,10 @@ node {
     Try {
     slackNotifications('started')
     def maven = tool name:'maven3.8.6'
-    stage('checkout'){
+echo "The JobName is: ${env.JOB_NAME}" 
+ echo "The node name is: ${env.NODE_NAME}"
+ echo "The build number is: ${env.BUILD_NUMBER}"
+   stage('checkout'){
     git branch: 'development', credentialsId: 'dd130e80-2481-4bb9-a12e-18d7edf464d8', url: 'https://github.com/vishnukrn1996/maven-web-application.git'
     }
     stage('build'){
@@ -48,5 +51,5 @@ def notifyBuild(String buildStatus = 'STARTED') {
   }
 
   // Send notifications
-  slackSend (color: colorCode, message: summary, channel: "#walmart" )
+  slackSend (color: colorCode, message: summary, channel: "#walmart-pipeline" )
 }
