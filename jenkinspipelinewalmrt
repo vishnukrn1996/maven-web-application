@@ -20,7 +20,6 @@ try{
   sh "${mavenHome}/bin/mvn package"
   }
   
-  /*
   stage('ExecuteSoanrQubeReport')
   {
   sh "${mavenHome}/bin/mvn clean sonar:sonar"
@@ -33,10 +32,9 @@ try{
   
    stage('DeployAppIntoTomcatServer'){
   sshagent(['ed3c425a-5ed2-4384-99c1-12cc22911ec4']) {
-   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.42.12:/opt/apache-tomcat-9.0.67/webapps/"   
+   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.127.142.19/opt/apache-tomcat-9.0.67/webapps/"   
   }
   }
-  */
   }//try closing
   catch(e){
   currentBuild.result="FAILURE"
