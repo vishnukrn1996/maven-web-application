@@ -1,6 +1,6 @@
 node {
     try {
-        slackNotifications(STARTED)
+        slackNotifications('STARTED')
         def maven = tool name: "maven3.8.6"
         stage('checkout') {
         git branch: 'development', credentialsId: 'dd130e80-2481-4bb9-a12e-18d7edf464d8', url: 'https://github.com/vishnukrn1996/maven-web-application.git'
