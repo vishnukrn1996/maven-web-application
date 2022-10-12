@@ -1,5 +1,7 @@
 node {
+
     try {
+    
     slackNotifications('STARTED')
     def maven = tool name:'maven3.8.6'
 echo "The JobName is: ${env.JOB_NAME}" 
