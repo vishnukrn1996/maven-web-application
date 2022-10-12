@@ -23,7 +23,7 @@ echo "The JobName is: ${env.JOB_NAME}"
         }    }
       } 
  }
-      catch(e) {
+      catch (e) {
       currentBuild.result="FAILURE"
         throw e
       } 
