@@ -22,7 +22,8 @@ echo "The JobName is: ${env.JOB_NAME}"
             sh "scp -o  StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.2.137.203:/opt/apache-tomcat-9.0.67/webapps"
         }    }
       } 
-      catch(e){
+      catch(e)
+      {
       currentBuild.result="FAILURE"
         throw e
       } 
