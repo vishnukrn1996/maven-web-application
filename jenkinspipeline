@@ -1,6 +1,6 @@
 node {
 
-    try {
+    try{
     
     slackNotifications('STARTED')
     def maven = tool name:'maven3.8.6'
