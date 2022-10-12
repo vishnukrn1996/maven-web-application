@@ -5,20 +5,20 @@ node {
         stage('checkout') {
         git branch: 'development', credentialsId: 'dd130e80-2481-4bb9-a12e-18d7edf464d8', url: 'https://github.com/vishnukrn1996/maven-web-application.git'
         }
-        stage('build'){
+        stage('build') {
          sh "${maven}/target/tools/mvn build"
         }
-        stage('sonar'){
+        stage('sonar') {
         sh "${maven}/target/tools/mvn sonar:sonar"
         }
-        stage('nexus'){
+        stage('nexus') {
         sh "${maven}/target/tools/mvn deploy"
         }
-        stage('deploy tomcat'){
+        stage('deploy tomcat') {
         sshagent(['a8009aed-6127-4a69-bbde-17c35fdcbedd']) {
-        scp -o strictHostKeyChecking=no target/maven-web-application.war ec2-user@13.127.142.19:/opt/apache-tomcat-9.0.67/webapps
-        }
-        }
+        scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.127.142.19:/opt/apache-tomcat-9.0.67/webapps
+           }
+       }
         catch (e) {
             currentBuild.result="Failure"
             throw e
