@@ -19,7 +19,7 @@ node {
         sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.127.142.19:/opt/apache-tomcat-9.0.67/webapps" 
         }
        }
-        catch (e) {
+        catch(e) {
             currentBuild.result="Failure"
             throw e
         }
